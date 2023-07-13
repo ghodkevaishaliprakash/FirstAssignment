@@ -102,13 +102,16 @@ this.Employee={
   }
   onDelete(id:number)
   {
+    if(confirm('Are you sure you want to delete '))
     //this.EmployeeArr.splice(id);
     for(let i=0;i<this.EmployeeArr.length;i++){
 if(this.EmployeeArr[i].EmployeeId == id)
 {
  
   this.EmployeeArr.splice(i,1);
+  alert("Record deleted Successfully ");
 }
+
   }
   localStorage.setItem('EmployeList',JSON.stringify(this.EmployeeArr));
 }
