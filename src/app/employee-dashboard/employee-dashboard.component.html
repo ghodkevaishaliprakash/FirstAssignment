@@ -33,12 +33,13 @@
                   <td>{{item.contactNumber}}</td>
                   <!-- <td>{{item.gender}}</td> -->
                   <td>{{item.gender}}</td>
+               
+                  <td>{{item.skillName}}-{{item.skillExperience}}</td>
                   
-                  <td class="text-center"></td>
-                  <button type="button" class="btn btn-info btn-sm" (click)="onEdit(item)">Edit</button>
-                  <button type="button" class="btn btn-Secondary btn-sm" (click)="onDelete(item.EmployeeId)">
-                    Delete
-                    </button>
+                  <td class="text-center">
+                  <button type="button" class="btn btn-info btn-md" (click)="onEdit(item)">Edit</button>
+                  <button type="button" class="btn btn-info btn-md" (click)="onDelete(item.EmployeeId)">
+                    Delete </button></td>
                 </tr>
               </tbody>
               
@@ -82,14 +83,15 @@
             </div>
         </div> 
 
-            <div class="col-md-4">
+            <div class="col-md-12">
                 <div class="row">
-                        Skill :
-                         <input type="text" id="skill" placeholder="Enter Skill Name" formControlName="skillName">
-                        
-                        <!--  <div class="col-md-4">
-                            <select class="form-control" >
-                        <option value="">Select Experience</option>
+                    <div class="col-md-8">
+                        <label >Skill*</label>
+                        <input type="text" class="skilltext" placeholder="Enter Skill Name" formControlName="skillName" [(ngModel)]="Employee.skillName">                       
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <select class=" skilltext"  placeholder="select skillExperience"  formControlName="skillExperience"  [(ngModel)]="Employee.skillExperience">
                         <option value=1>1</option>
                         <option value=2>2</option>
                         <option value=3>3</option>
@@ -100,9 +102,12 @@
                         <option value=5>8</option>
                         <option value=5>9</option>
                         <option value=5>10</option>
-                    </select></div> -->
-                    <input type="button" class="btnAddSkill" value="Add Skill +" id="btnAddSkill">
-                    
+                    </select></div> 
+                    <input type="button" class="btn btn-info btn-sm small" value="Add Skill +" id="btnAddSkill" (click)="addNewSkill()">
+                    <div>
+                        <div id="textboxes"></div>
+                        <div id="dropdowns"></div>
+                    </div>
                     </div>
                 </div>
                   

@@ -7,6 +7,11 @@ input[type=text],[type=email],select{
     border-radius: 4px;
     box-sizing: border-box;
 }
+.skilltext{
+
+    width: 50%;
+    background-color:#f8f9fa
+}
 
 input[type=submit]{
     width: 150x;
@@ -34,7 +39,10 @@ input[type=submit]{
     top: 20%;
     left:30%;
 }
-
+.small{
+    height: 2rem;
+    width: 5rem;
+}
 
 
 .form{
@@ -48,7 +56,7 @@ input[type=submit]{
 }
 .modal-body{
     background:coral;
-    height: 25rem;
+    height: 35rem;
     width: 40rem;
     margin: 8px 0;
     padding: 12PX 20PX;

@@ -1,6 +1,6 @@
 
 import { NgIf } from '@angular/common';
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges, Renderer2 } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { empty } from 'rxjs';
@@ -13,8 +13,11 @@ import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
   styleUrls: ['./employee-dashboard.component.scss']
 })
 export class EmployeeDashboardComponent implements OnInit {
+
+  constructor(private renderer:Renderer2){}
+
   ngOnInit(): void {
-    debugger
+    
     const localData=localStorage.getItem('EmployeList')
     if(localData!=null)
     {
@@ -29,9 +32,52 @@ export class EmployeeDashboardComponent implements OnInit {
     name:new FormControl('null',Validators.required),
     contactNumber:new FormControl('',Validators.required),
     email:new FormControl('null',[Validators.required,Validators.email]),
-    gender:new FormControl('')
+    gender:new FormControl(''),
+    skillName:new FormControl(''),
+    skillExperience: new FormControl('')
+    // skills:new FormArray([
+    //   new FormGroup({
+    //     skillName: new FormControl('', [Validators.required]),
+    //     skillExperience: new FormControl('', [Validators.required])
+    //   })])
   
   })
+  addNewSkill()
+  {
+    
+    // const div = this.renderer.createElement('div');
+    // const input = this.renderer.createElement('input');
+
+    // const divselect = this.renderer.createElement('div');
+    // const selectexp = this.renderer.createElement('select');
+
+    // this.renderer.appendChild(div, input);
+    // this.renderer.appendChild(divselect, selectexp);
+
+    // this.renderer.addClass(div, 'col-md-5');
+    // this.renderer.addClass(div, 'col-sm-5');
+    // this.renderer.addClass(div, 'col-xs-12');
+
+    
+    // this.renderer.addClass(input, 'form-control');
+    // this.renderer.addClass(input, 'col-md-5');
+    // this.renderer.addClass(input, 'col-xs-12');
+
+    // this.renderer.addClass(divselect, 'col-md-5');
+    // this.renderer.addClass(divselect, 'col-sm-5');
+    // this.renderer.addClass(divselect, 'col-xs-12');
+
+    
+    // this.renderer.addClass(selectexp, 'form-control');
+    // this.renderer.addClass(selectexp, 'col-md-5');
+    // this.renderer.addClass(selectexp, 'col-xs-12');
+
+    // const textboxes = document.getElementById('textboxes');
+    // const dropdowns = document.getElementById('dropdowns');
+
+    // this.renderer.appendChild(textboxes, div);
+    // this.renderer.appendChild(dropdowns, divselect);
+  }
   
   
   LoginUser()
@@ -44,8 +90,11 @@ export class EmployeeDashboardComponent implements OnInit {
     name:'',
     contactNumber:'',
     email:'',
-    gender:'',  };
-  constructor(){}
+    gender:'',  
+    skillName:'',
+    skillExperience:''
+  };
+  
   SaveData(data:any)
   { 
     
@@ -59,7 +108,9 @@ this.Employee={
   name:'',
   contactNumber:'',
   email:'',
-  gender:'',  };
+  gender:'', 
+  skillName:'',
+  skillExperience:'', };
   }
   onCloseModel()
   {
@@ -84,7 +135,9 @@ this.Employee={
   name:'',
   contactNumber:'',
   email:'',
-  gender:'',  
+  gender:'', 
+  skillName:'',
+  skillExperience:'', 
 };
   }
       
@@ -118,12 +171,14 @@ if(this.EmployeeArr[i].EmployeeId == id)
 
   onUpdate(data:any)
   {
-
+debugger;
 const record=this.EmployeeArr.find(m=>m.EmployeeId==this.Employee.EmployeeId)
 record.name=this.Employee.name;
 record.email=this.Employee.email;
 record.contactNumber=this.Employee.contactNumber;
 record.gender=this.Employee.gender;
+record.skillName=this.Employee.skillName;
+record.skillExperience=this.Employee.skillExperience;
 this.onCloseModel();
 localStorage.setItem('EmployeList',JSON.stringify(this.EmployeeArr));
   }
